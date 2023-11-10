@@ -3,7 +3,6 @@ using BTDB.ODBLayer;
 
 namespace BtdbBenchmarks.UpdatesById;
 
-
 public enum PersonState
 {
     Single = 0,
@@ -13,30 +12,21 @@ public enum PersonState
 
 public class Person
 {
-    [PrimaryKey(1)]
-    public int ParentId { get; set; }
+    [PrimaryKey(1)] 
+    public required int ParentId { get; set; }
 
     [PrimaryKey(2)]
-    public int PersonId { get; set; }
+    public required int PersonId { get; set; }
 
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
-    public ulong Age { get; set; }
+    public required ulong Age { get; set; }
 
-    public PersonState State { get; set; }
+    public required PersonState State { get; set; }
 
     public IList<Person>? Children { get; set; }
-    
-    public object Test { get; set; }
 
-    public Person(int parentId, int personId, string name, ulong age)
-    {
-        ParentId = parentId;
-        PersonId = personId;
-        Name = name;
-        Age = age;
-        State = PersonState.Single;
-    }
+    public object? Test { get; set; }
 }
 
 public class PersonOnlyId
@@ -45,9 +35,9 @@ public class PersonOnlyId
     public int PersonId { get; set; }
 }
 
-public class PersonOnlyName: PersonOnlyId
+public class PersonOnlyName : PersonOnlyId
 {
-    public string Name { get; set; }
+    public required string Name { get; set; }
 }
 
 public interface IPersonTable : IRelation<Person>
@@ -60,5 +50,7 @@ public interface IPersonTable : IRelation<Person>
     IEnumerable<PersonOnlyName> FindByIdOnlyName(int parentId);
 }
 
-public class Tests {
-    public string Name { get; set; }}
+public class Tests
+{
+    public required string Name { get; set; }
+}

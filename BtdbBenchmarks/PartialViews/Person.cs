@@ -5,25 +5,17 @@ namespace BtdbBenchmarks.PartialViews;
 
 public class Person
 {
-    [PrimaryKey(1)]
-    public int ParentId { get; set; }
+    [PrimaryKey(1)] 
+    public required int ParentId { get; set; }
 
     [PrimaryKey(2)]
-    public int PersonId { get; set; }
+    public required int PersonId { get; set; }
 
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
-    public ulong Age { get; set; }
+    public required ulong Age { get; set; }
 
     public IList<Person>? Children { get; set; }
-
-    public Person(int parentId, int personId, string name, ulong age)
-    {
-        ParentId = parentId;
-        PersonId = personId;
-        Name = name;
-        Age = age;
-    }
 }
 
 public class PersonOnlyId
@@ -34,7 +26,7 @@ public class PersonOnlyId
 
 public class PersonOnlyName: PersonOnlyId
 {
-    public string Name { get; set; }
+    public required string Name { get; set; }
 }
 
 public interface IPersonTable : IRelation<Person>

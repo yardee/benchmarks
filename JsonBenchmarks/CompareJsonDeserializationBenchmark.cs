@@ -12,7 +12,7 @@ namespace JsonBenchmarks;
 public class CompareJsonDeserializationBenchmark
 {
     private List<string> _personsJsons = new List<string>();
-    private string _personsJson;
+    private string _personsJson = string.Empty;
     readonly JsonSerializerSettings _jsonSerializerSettings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.All };
     [GlobalSetup]
     public void GlobalSetup()

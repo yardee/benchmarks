@@ -2,8 +2,6 @@
 using BTDB.KVDBLayer;
 using BTDB.ODBLayer;
 
-#nullable enable
-
 namespace BtdbBenchmarks.EnumInObject;
 
 [MemoryDiagnoser]

@@ -13,7 +13,7 @@ public class Person
 {
     [PrimaryKey(1)] public int PersonId { get; set; }
 
-    public object State { get; set; }
+    public required object State { get; set; }
 }
 
 public interface IPersonTable : IRelation<Person>

@@ -2,8 +2,6 @@
 using BTDB.KVDBLayer;
 using BTDB.ODBLayer;
 
-#nullable enable
-
 namespace BtdbBenchmarks.UpdatesById;
 
 [MemoryDiagnoser]
@@ -31,9 +29,21 @@ public class BtdbUpdateByIdBenchmark
 
         foreach (var parentId in Enumerable.Range(1, 10000))
         {
-            var person = new Person(1, parentId, "Parent Parent Parent Parent Parent Parent Parent Parent Parent Parent Parent Parent " + parentId, 40)
+            var person = new Person
             {
-                Children = Enumerable.Range(0, 100).Select(i => new Person(parentId, i, "Child", 1)).ToList(),
+                PersonId = 1,
+                ParentId = parentId,
+                Name = "Parent Parent Parent Parent Parent Parent Parent Parent Parent Parent Parent Parent " + parentId,
+                Age = 40,
+                State = PersonState.Single,
+                Children = Enumerable.Range(0, 100).Select(i => new Person
+                {
+                    ParentId = parentId, 
+                    PersonId = i, 
+                    Name = "Child", 
+                    Age = 1,
+                    State = PersonState.Single,
+                }).ToList(),
                 Test = new Tests{ Name = "BLa"}
             };
             personTable.Upsert(person);

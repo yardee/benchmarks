@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using System.Text;
+﻿using System.Text;
 using BenchmarkDotNet.Attributes;
 
 namespace StringBenchmarks;
@@ -8,8 +6,8 @@ namespace StringBenchmarks;
 [MemoryDiagnoser]
 public class CompareStringCreation
 {
-    private Person[] _persons;
-    private Logger _log;
+    private Person[] _persons = Array.Empty<Person>();
+    private readonly Logger _log = new ();
     private TimeSpan _duration;
     static readonly TimeSpan SlowEventThreshold = TimeSpan.FromMilliseconds(1);
     
@@ -17,7 +15,6 @@ public class CompareStringCreation
     public void GlobalSetup()
     {
         _duration = TimeSpan.FromMilliseconds(20);
-        _log = new Logger();
         _persons = new []
         {
             new Person { Id = 5, Name = "asdfasdffsda" },

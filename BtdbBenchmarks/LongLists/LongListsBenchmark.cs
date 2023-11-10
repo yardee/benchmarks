@@ -4,8 +4,6 @@ using BTDB.KVDBLayer;
 using BTDB.ODBLayer;
 using BtdbBenchmarks.LongLists;
 
-#nullable enable
-
 namespace BtdbBenchmarks.LongLists;
 
 [MemoryDiagnoser]

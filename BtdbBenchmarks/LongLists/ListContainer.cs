@@ -27,7 +27,7 @@ public class IndirectContainer
 
 public class LazyStateItemIds
 {
-    public ISet<int> ItemIds { get; set; }
+    public required ISet<int> ItemIds { get; set; }
 }
 
 public interface IIndirectContainerTable : IRelation<IndirectContainer>
