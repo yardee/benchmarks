@@ -1,50 +1,89 @@
 ﻿#nullable enable
 
+using System.Runtime.InteropServices;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Configs;
+using BenchmarkDotNet.Jobs;
+using BenchmarkDotNet.Toolchains.InProcess.Emit;
+using BenchmarkDotNet.Toolchains.InProcess.NoEmit;
 
 namespace CollectionBenchmarks;
 
 [MemoryDiagnoser]
 public class CompareCollections
 {
+
     // private const int Count = 1000;
     // private Queue<int> _queue;
     // private List<int> _list;
     
-    [Benchmark]
-    public ulong ValueUlong()
-    {
-        ulong a = 100;
-        return Do(a);
-    }
+    // [Benchmark]
+    // public ulong ValueUlong()
+    // {
+    //     ulong a = 100;
+    //     return Do(a);
+    // }
+    //
+    // [Benchmark]
+    // public ulong? ValueNullableUlong()
+    // {
+    //     ulong? a = 100;
+    //     return Do(a);
+    // }
+    //
+    // [Benchmark]
+    // public ulong ValueZeroUlong()
+    // {
+    //     ulong a = 0;
+    //     return Do(a);
+    // }
+    //
+    // [Benchmark]
+    // public ulong? ValueNullUlong()
+    // {
+    //     ulong? a = null;
+    //     return Do(a);
+    // }
+    //
+    // private T Do<T>(T a)
+    // {
+    //     return a;
+    // }
+
+    IEnumerable<int> CreateItems() => Enumerable.Range(1, 1000000);
     
     [Benchmark]
-    public ulong? ValueNullableUlong()
+    public int[] ToArray()
     {
-        ulong? a = 100;
-        return Do(a);
-    }
-    
-    [Benchmark]
-    public ulong ValueZeroUlong()
-    {
-        ulong a = 0;
-        return Do(a);
-    }
-    
-    [Benchmark]
-    public ulong? ValueNullUlong()
-    {
-        ulong? a = null;
-        return Do(a);
+        return CreateItems().ToArray();
     }
 
-    private T Do<T>(T a)
+    [Benchmark]
+    public int[] ToSpan()
     {
-        return a;
+        Span<int> a = stackalloc int[1000000];
+        var i = 0;
+        foreach (var item in CreateItems())
+        {
+            a[i++] = item;
+        }
+        return a.ToArray();
     }
-    
-    
+
+    [Benchmark]
+    public List<int> ToList()
+    {
+        return CreateItems().ToList();
+    }
+
+
+    [Benchmark]
+    public ISet<int> ToHashSet()
+    {
+        return CreateItems().ToHashSet();
+    }
+
+
     /*[GlobalSetup]
     public void GlobalSetup()
     {
@@ -56,8 +95,8 @@ public class CompareCollections
             _list.Add(i);
         }
     }
-    
-    
+
+
     [Benchmark]
     public void Queue_Enqueue()
     {
@@ -67,7 +106,7 @@ public class CompareCollections
             queue.Enqueue(i);
         }
     }
-    
+
     [Benchmark]
     public void List_Add()
     {
@@ -77,19 +116,19 @@ public class CompareCollections
             list.Add(i);
         }
     }
-    
+
     [Benchmark]
     public void List_Remove()
     {
         _list.Remove(500);
     }
-    
+
     [Benchmark]
     public void Queue_Remove()
     {
         _queue = new Queue<int>(_queue.Where(e => e != 500));
     }
-    
+
     [Benchmark]
     public void StackallocSpan_Create()
     {
@@ -103,7 +142,7 @@ public class CompareCollections
             }
         }
     }
-    
+
     [Benchmark]
     public void ArraySpan_Create()
     {
@@ -117,7 +156,7 @@ public class CompareCollections
             }
         }
     }
-    
+
     [Benchmark]
     public void Array_Add()
     {
@@ -130,18 +169,18 @@ public class CompareCollections
             }
         }
     }
-    
+
     [Benchmark]
     public object HashSet_FromIEnumerable()
     {
         var array = new HashSet<int>(Enumerable.Range(0, Count));
         return array;
     }
-    
+
     [Benchmark]
     public Span<int> Span_FromIEnumerable()
     {
         return new Span<int>(Enumerable.Range(0, Count).ToArray());
     }*/
-    
+
 }
