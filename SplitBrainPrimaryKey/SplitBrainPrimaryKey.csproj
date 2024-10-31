@@ -5,7 +5,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="BTDB" Version="32.16.2" />
+        <PackageReference Include="BTDB" Version="32.16.3" />
     </ItemGroup>
 
 </Project>

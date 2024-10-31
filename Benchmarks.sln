@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventsFactories", "EventsFa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AesEncryptionBenchmarks", "AesEncryptionBenchmarks\AesEncryptionBenchmarks.csproj", "{552EC525-C0AD-4B16-8D96-383D541B6181}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerializationBenchmarks", "SerializationBenchmarks\SerializationBenchmarks.csproj", "{F9231AA1-1689-46B1-A83F-99ECC78C3B12}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{552EC525-C0AD-4B16-8D96-383D541B6181}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{552EC525-C0AD-4B16-8D96-383D541B6181}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{552EC525-C0AD-4B16-8D96-383D541B6181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9231AA1-1689-46B1-A83F-99ECC78C3B12}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9231AA1-1689-46B1-A83F-99ECC78C3B12}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9231AA1-1689-46B1-A83F-99ECC78C3B12}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9231AA1-1689-46B1-A83F-99ECC78C3B12}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
